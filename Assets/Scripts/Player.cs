@@ -21,12 +21,10 @@ public class Player : MonoBehaviour {
 	private float hForce = 0;
 	private bool crouched;
 	private bool lookingUp;
-	private bool reloading;
 	private float fireRate = 0.5f;
 	private float nextFire;
 	private bool tookDamage = false;
 
-	private float reloadTime;
 	private int health;
 	private int maxHealth;
 
@@ -62,7 +60,7 @@ public class Player : MonoBehaviour {
 				anim.SetBool("Jump", false);
 			}
 
-			if (Input.GetButtonDown("Jump") && onGround && !reloading)
+			if (Input.GetButtonDown("Jump") && onGround)
 			{
 				jump = true;
 			}
@@ -74,7 +72,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !reloading && canFire)
+			if (Input.GetButtonDown("Fire1") && Time.time > nextFire && canFire)
 			{
 				nextFire = Time.time + fireRate;
 				anim.SetTrigger("Shoot");
@@ -92,10 +90,6 @@ public class Player : MonoBehaviour {
 					tempBullet.transform.eulerAngles = new Vector3(0, 0, -90);
 				}				
 			}
-			else if(Input.GetButtonDown("Fire1") && onGround)
-			{
-				StartCoroutine(Reloading());
-			}
 
 			lookingUp = Input.GetButton("Up");
 			crouched = Input.GetButton("Down");
@@ -103,25 +97,11 @@ public class Player : MonoBehaviour {
 			anim.SetBool("LookingUp", lookingUp);
 			anim.SetBool("Crouched", crouched);
 
-			if (Input.GetButtonDown("Reload") && onGround)
-			{
-				StartCoroutine(Reloading());
+			if(Input.GetButtonDown("Fire2")) {
+
 			}
 
-			if(Input.GetButtonDown("Fire2"))
-			{
-				// Rigidbody2D tempBomb = Instantiate(bomb, transform.position, transform.rotation);
-				// if (facingRight)
-				// {
-				// 	tempBomb.AddForce(new Vector2(8, 10), ForceMode2D.Impulse);
-				// }
-				// else
-				// {
-				// 	tempBomb.AddForce(new Vector2(-8, 10), ForceMode2D.Impulse);
-				// }
-			}
-
-			if((crouched || lookingUp || reloading) && onGround)
+			if((crouched || lookingUp) && onGround)
 			{
 				hForce = 0;
 			}
@@ -133,7 +113,7 @@ public class Player : MonoBehaviour {
 	{
 		if (!isDead)
 		{
-			if(!crouched && !lookingUp && !reloading)
+			if(!crouched && !lookingUp)
 			hForce = Input.GetAxisRaw("Horizontal");
 
 			anim.SetFloat("Speed", Mathf.Abs(hForce));
@@ -159,15 +139,6 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Reloading()
-	{
-		reloading = true;
-		anim.SetBool("Reloading", true);
-		yield return new WaitForSeconds(reloadTime);
-		reloading = false;
-		anim.SetBool("Reloading", false);
-	}
-
 	void Flip()
 	{
 		facingRight = !facingRight;
@@ -180,7 +151,6 @@ public class Player : MonoBehaviour {
 	public void SetPlayerStatus()
 	{
 		fireRate = gameManager.fireRate;
-		reloadTime = gameManager.reloadTime;
 		maxHealth = gameManager.health;
 	}
 
