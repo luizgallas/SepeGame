@@ -96,19 +96,6 @@ public class Player : MonoBehaviour {
 			anim.SetBool("LookingUp", lookingUp);
 			anim.SetBool("Crouched", crouched);
 
-			// if(Input.GetButtonDown("Fire2"))
-			// {
-			// 	Rigidbody2D tempBomb = Instantiate(bomb, transform.position, transform.rotation);
-			// 	if (facingRight)
-			// 	{
-			// 		tempBomb.AddForce(new Vector2(8, 10), ForceMode2D.Impulse);
-			// 	}
-			// 	else
-			// 	{
-			// 		tempBomb.AddForce(new Vector2(-8, 10), ForceMode2D.Impulse);
-			// 	}
-			// }
-
 			if((crouched || lookingUp) && onGround)
 			{
 				hForce = 0;
@@ -172,6 +159,10 @@ public class Player : MonoBehaviour {
 		if(other.CompareTag("Enemy") && !tookDamage)
 		{
 			StartCoroutine(TookDamage());
+		} else if(other.CompareTag("OutOfMap")) {
+			isDead = true;
+			anim.SetTrigger("Death");
+			Invoke("ReloadScene", 2f);
 		}
 	}
 
@@ -182,7 +173,6 @@ public class Player : MonoBehaviour {
 			StartCoroutine(TookDamage());
 		}
 	}
-
 
 	void ReloadScene() 
 	{
