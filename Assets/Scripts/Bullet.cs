@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-	public float speed = 30;
+	public float speed = 10;
 	private int damage = 1;
 	public float destroyTime = 1.5f;
 
@@ -26,16 +26,10 @@ public class Bullet : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		Enemy otherEnemy = other.GetComponent<Enemy>();
-		Boss boss = other.GetComponent<Boss>();
 
 		if(otherEnemy != null)
 		{
 			otherEnemy.TookDamage(damage);
-		}
-
-		if (boss != null)
-		{
-			boss.TookDamage(damage);
 		}
 		Destroy(gameObject);
 	}

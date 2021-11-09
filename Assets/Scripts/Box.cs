@@ -5,6 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour {
 
 	public int health;
+	public int bombs;
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -12,7 +13,7 @@ public class Box : MonoBehaviour {
 
 		if(player != null)
 		{
-			player.SetHealth(health);
+			player.SetHealthAndBombs(health, bombs);
 			Destroy(gameObject);
 		}
 	}

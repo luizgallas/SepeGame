@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F7DA7899-712C-E3AD-9F9E-838BF1D17A84}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run and Gun Tutorial", "Run and Gun Tutorial.csproj", "{30B1691B-ACE1-A3D3-EB8C-48A8C15FE890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7DA7899-712C-E3AD-9F9E-838BF1D17A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7DA7899-712C-E3AD-9F9E-838BF1D17A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7DA7899-712C-E3AD-9F9E-838BF1D17A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7DA7899-712C-E3AD-9F9E-838BF1D17A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B1691B-ACE1-A3D3-EB8C-48A8C15FE890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B1691B-ACE1-A3D3-EB8C-48A8C15FE890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B1691B-ACE1-A3D3-EB8C-48A8C15FE890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B1691B-ACE1-A3D3-EB8C-48A8C15FE890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

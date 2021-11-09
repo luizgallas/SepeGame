@@ -90,16 +90,24 @@ public class Player : MonoBehaviour {
 					tempBullet.transform.eulerAngles = new Vector3(0, 0, -90);
 				}				
 			}
-
 			lookingUp = Input.GetButton("Up");
 			crouched = Input.GetButton("Down");
 
 			anim.SetBool("LookingUp", lookingUp);
 			anim.SetBool("Crouched", crouched);
 
-			if(Input.GetButtonDown("Fire2")) {
-
-			}
+			// if(Input.GetButtonDown("Fire2"))
+			// {
+			// 	Rigidbody2D tempBomb = Instantiate(bomb, transform.position, transform.rotation);
+			// 	if (facingRight)
+			// 	{
+			// 		tempBomb.AddForce(new Vector2(8, 10), ForceMode2D.Impulse);
+			// 	}
+			// 	else
+			// 	{
+			// 		tempBomb.AddForce(new Vector2(-8, 10), ForceMode2D.Impulse);
+			// 	}
+			// }
 
 			if((crouched || lookingUp) && onGround)
 			{
@@ -201,12 +209,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void ReloadScene()
-	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}
-
-	public void SetHealth(int life)
+	public void SetHealthAndBombs(int life, int bomb)
 	{
 		health += life;
 		if(health >= maxHealth)
