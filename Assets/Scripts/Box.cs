@@ -13,7 +13,7 @@ public class Box : MonoBehaviour {
 
 		if(player != null)
 		{
-			player.SetHealthAndBombs(health, bombs);
+			player.SetHealthAndBombs(health);
 			Destroy(gameObject);
 		}
 	}

@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 		SetPlayerStatus();
 		health = maxHealth;
 
-		UpdateHealthUI();
+		// UpdateHealthUI();
 	}
 	
 	// Update is called once per frame
@@ -162,10 +162,10 @@ public class Player : MonoBehaviour {
 		maxHealth = gameManager.health;
 	}
 
-	void UpdateHealthUI()
-	{
-		FindObjectOfType<UIManager>().UpdateHealthUI(health);
-	}
+	// void UpdateHealthUI()
+	// {
+	// 	FindObjectOfType<UIManager>().UpdateHealthUI(health);
+	// }
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -183,11 +183,17 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+
+	void ReloadScene() 
+	{
+ 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+ 	}
+
 	IEnumerator TookDamage()
 	{
 		tookDamage = true;
 		health--;
-		UpdateHealthUI();
+		// UpdateHealthUI();
 		if(health <= 0)
 		{
 			isDead = true;
@@ -209,13 +215,13 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void SetHealthAndBombs(int life, int bomb)
+	public void SetHealthAndBombs(int life)
 	{
 		health += life;
 		if(health >= maxHealth)
 		{
 			health = maxHealth;
 		}
-		UpdateHealthUI();
+		// UpdateHealthUI();
 	}
 }
