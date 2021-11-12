@@ -163,6 +163,8 @@ public class Player : MonoBehaviour {
 			isDead = true;
 			anim.SetTrigger("Death");
 			Invoke("ReloadScene", 2f);
+		} else if(other.CompareTag("NextLevel")) {
+			Application.LoadLevel("Level2")
 		}
 	}
 

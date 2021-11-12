@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public int health = 5;
+	public int health = 3;
 	public int damage = 1;
 	public float fireRate = 0.5f;
 
