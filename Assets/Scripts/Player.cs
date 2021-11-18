@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -11,6 +12,10 @@ public class Player : MonoBehaviour {
 	public Transform shotSpawner;
 	public float damageTime = 1f;
 	public bool canFire = true;
+
+	public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
 
 	private Animator anim;
 	private Rigidbody2D rb2d;
@@ -43,11 +48,8 @@ public class Player : MonoBehaviour {
 
 		SetPlayerStatus();
 		health = maxHealth;
-
-		// UpdateHealthUI();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 		if (!isDead)
@@ -149,11 +151,6 @@ public class Player : MonoBehaviour {
 		maxHealth = gameManager.health;
 	}
 
-	// void UpdateHealthUI()
-	// {
-	// 	FindObjectOfType<UIManager>().UpdateHealthUI(health);
-	// }
-
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.CompareTag("Enemy") && !tookDamage)
@@ -185,7 +182,7 @@ public class Player : MonoBehaviour {
 	{
 		tookDamage = true;
 		health--;
-		// UpdateHealthUI();
+		UpdateUI();
 		if(health <= 0)
 		{
 			isDead = true;
@@ -215,5 +212,15 @@ public class Player : MonoBehaviour {
 			health = maxHealth;
 		}
 		// UpdateHealthUI();
+	}
+
+	private void UpdateUI() {
+        for (int i = 0; i < hearts.Length; i++) {
+            if (i < health) {
+                hearts[i].sprite = fullHeart;
+            } else {
+                hearts[i].sprite = emptyHeart;
+            }
+        }
 	}
 }
