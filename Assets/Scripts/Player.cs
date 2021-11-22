@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using TMPro;
 public class Player : MonoBehaviour {
 
 	public float speed = 5f;
@@ -12,11 +12,6 @@ public class Player : MonoBehaviour {
 	public Transform shotSpawner;
 	public float damageTime = 1f;
 	public bool canFire = true;
-
-	public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
-
 	private Animator anim;
 	private Rigidbody2D rb2d;
 	private bool facingRight = true;
@@ -31,7 +26,9 @@ public class Player : MonoBehaviour {
 	private bool tookDamage = false;
 
 	private int health;
+	public TextMeshProUGUI lifeCounter;
 	private int maxHealth;
+	public GameObject[] hearts;
 
 	private bool isDead = false;
 
@@ -104,6 +101,19 @@ public class Player : MonoBehaviour {
 			}
 		}
 
+		lifeCounter.text = health.ToString();
+
+		// if(health < 1){
+		// 	//Destroy(hearts[0].gameObject);
+		// 	hearts[0].gameObject.SetActive(false);
+		// } else if (health < 2){
+		// 	hearts[1].gameObject.SetActive(false);
+		// 	//Destroy(hearts[1].gameObject) ;
+		// }
+		// else if (health < 3){
+		// 	hearts[2].gameObject.SetActive(false);
+		// 	//Destroy(hearts[2].gameObject);
+		// }
 	}
 
 	private void FixedUpdate()
@@ -182,7 +192,6 @@ public class Player : MonoBehaviour {
 	{
 		tookDamage = true;
 		health--;
-		UpdateUI();
 		if(health <= 0)
 		{
 			isDead = true;
@@ -207,20 +216,10 @@ public class Player : MonoBehaviour {
 	public void SetHealthAndBombs(int life)
 	{
 		health += life;
+
 		if(health >= maxHealth)
 		{
 			health = maxHealth;
 		}
-		// UpdateHealthUI();
-	}
-
-	private void UpdateUI() {
-        for (int i = 0; i < hearts.Length; i++) {
-            if (i < health) {
-                hearts[i].sprite = fullHeart;
-            } else {
-                hearts[i].sprite = emptyHeart;
-            }
-        }
 	}
 }

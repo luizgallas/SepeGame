@@ -5,6 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour {
 
 	public int health;
+	public GameObject[] hearts;
 	public int bombs;
 
 	private void OnTriggerEnter2D(Collider2D other)
